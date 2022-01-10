@@ -1,112 +1,103 @@
-# Gestion de projet
+# POO
 
-## Notre projet : OQuiz
+POO pour programmation orientée objet.
 
-Besoin : plateforme de quiz
+## Philosophie
 
-https://drive.google.com/file/d/1XhoR1ykfXFfXrqE3MFo04k9mhVERqPlE/view?usp=sharing
+La programmation orientée objet est une organisation autour d'**instances**.
 
-Méthodologie de projet : Scrum
+Chaque instance a son propre cycle de vie :
 
-Scrum :
+1. Création de l'objet (new)
+2. Modification de l'objet
+3. Suppression de l'objet
 
-- on découpe notre projet user stories
-- on crèe des sprints
+Cette méthode peut être pratique notamment pour tout ce qui concerne la base de données.
 
-### User stories
+Une instance d'objet aura des méthodes :
 
-Un visiteur est une personne non connectée.
-Un utilisateur est une personne connectée.
-Un admin est un utilisateur qui a la possibilité de créer/éditer/supprimer des quiz.
+1. Pour s'insérer
+2. Pour se mettre à jour
+3. Pour se supprimer
 
-|En tant que|J'ai besoin de|afin de|sprint
-|---|---|---|---|
-|init|---|---|0|
-|visiteur|une page d'accueil||1
-|visiteur|afficher le titre du site sur la page d'accueil avec un lien dessus vers celle-ci||1
-|visiteur|un lien vers la page de connexion depuis la page d'accueil|me connecter|1
-|visiteur|un champ de recherche sur la page d'accueil|rechercher un quiz|1
-|visiteur|un text explicatif des quiz sur la page d'accueil||1
-|visiteur|un menu de navigation via les catégories||1
-|visiteur|placer un footer||1
+### RAPPEL
 
-|visiteur|un formulaire de connexion|me connecter||N level, 11 question1
-|visiteur|une page qui liste tous les quizz dispo|choisir mon quizz|1
-|visiteur|choisir la complexité des questions||1|
-|visiteur|choisir la catégorie|afin de choisir une catégorie pour les questions|1|
-|utilisateur|affiche les questions de mon quizz choisi|répondre aux questions|
-|utilisateur|une page qui affiche les résultats aux quiz|||
-|utilisateur|pouvoir se déconnecter|||
-|admin|créer des utilisateurs|||
-|admin | de créer ou d'editer des quizz | renouveler les questions |
+CRUD :
 
-### Listes des tables en BDD
+Create
+Read
+Update
+Delete
 
-- QUIZ
-- CATEGORY
-- QUESTION
-- ANSWER
-- LEVEL
-- USER (student / admin)
+## Propriétés publiques/privées
 
-<img src="./db/Quiz.svg" width="600px" >
+Les propriétés privées et publiquent permettent de gérer l'accès ou non à une propriété.
 
-## Cycle de vie de notre projet
+Dans le cas d'une propriété publique, on est dans ce qu'on connait.
 
-1. Quelles sont les pages à réaliser ?
 
-Par rapport à la vidéo, quelles conclusions je tire vis à vis des pages à réaliser.
+```js
 
-Pages pour les utilisateurs non connectés (visiteur)
+class Person{
+    firstname;
 
-- homepage / accueil
-- page d'inscription
-- page de connexion
-- liste des quiz
-- liste des quiz par thématique
-- affichage en lecture seule du quiz
-- page de résultats de recherche
-- 404
+    constructor(firstname){
+        this.firstname = firstname;
+    }
+}
 
-Pages pour les utilisateurs connectés (utilisateur) :
+const chuck = new Person("Chuck");
 
-- page pour répondre à un quiz
-- résultat d'un quiz
-- page de profil
+chuck.firstname = "Toto";
+// la valeur se met directement à jour
+```
 
-Pages pour les admin (admin) :
+Dans le cas d'une propriété privée, la mise à jour de la propriété en dehors de la classe, va passer par le setter :
 
-- page de gestion des utilisateurs
-- ajout d'un utilisateur
-- édition d'un utilisateur
-- page gestion des quiz
-- création de quiz
-- édition d'un quiz
-- page de gestion des thématiques
+```js
 
-### WIREFRAMES
+class Person{
+    #firstname; // en passant la propriété en privée, je force l'utilisation du SETTER
 
-Les Wireframes sont des croquis/gabarit de la page à réaliser. Elles permettent de se faire une idées des composants et où les placer.
+    constructor(firstname){
+        this.#firstname = firstname;
+    }
 
-### MCD
+    set firstname(value){
+        this.#firstname = value;
+    }
+}
 
-Le MCD va permettre d'avoir une vue globale de notre base de données.
-On écrit les tables et leurs liaisons afin de se mettre en accord avec le fonctionnement attendu de notre application web (site web).
+const chuck = new Person("Chuck");
 
-## Etapes globales d'un projet
+chuck.firstname = "Toto";
+// la valeur est mise à jour dans le setter
+```
 
-On peut détailler un projet en différentes étapes :
+**Pourquoi travailler avec des propriétés privées plutôt que publique ?**
 
-1. J'initialise mon projet
-   1. création des users stories
-   2. mise en place de la BDD
+En utilisant des propriétés privées, on oblige l'accès à la propriété ou la modification de sa valeur à passer dans les GETTER/SETTER.
 
-2. Quel est le sprint 1 ?
+Dans ceux-ci nous pouvons effectuer différentes opérations pour s'assurer de l'intégrité des données.
 
-3. Quel est le sprint 2 ?
+L'intégrité des données, c'est s'assurer que le format de la donnée est conforme à ce qui est attendu.
 
-4. Quel est le sprint 3 ?
 
-5. ....
+## Static
 
-6. Mise en production de notre projet
+Static nous permet de définir des propriétés et des méthodes propres à la classe et non aux instances générées par celle-ci.
+
+Par exemple, une personne à un prénom, c'est propre à elle.
+L'ensemble des habitants d'un pays n'est pas une information propre à une personne.
+
+Pour faire simple, tout ce qui est propre à une instance (objet généré par la classe avec new) n'est pas statique !
+
+## Héritage
+
+Une classe peut hériter d'une autre classe.
+
+L'héritage permet à un enfant d'avoir les propriétés et les méthodes de son parent.
+
+On peut **surcharger** des méthodes pour en créer des spécifiques. Pour faire une surcharge, on reécrit la méthode dans l'enfant.
+
+Pour indiquer qu'une classe hérite d'une autre classe, on utilise le mot `extends`.
