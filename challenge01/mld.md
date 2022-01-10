@@ -8,16 +8,16 @@ Modèle Logique de Données
 
 ## Le MLD
 
-- User (<ins>code user</ins>, login, password)
+- User (<ins>id</ins>, firstname, lastname, mail, password)
   
-- Quizz (<ins>code quizz</ins>, title, description, is valid, #code user)
+- Quiz (<ins>id</ins>, title, description, isvalid, #user(id))
   
-- Category (<ins>code category</ins>, name)
+- Category (<ins>id</ins>, name)
 
-- Question (<ins>code question</ins>, question, #code level, #code reponse)
+- Question (<ins>id</ins>, description, wiki, quote, #level(id), #answer(id), #quiz(id))
 
-- Level (<ins>code level</ins>, name)
+- Level (<ins>id</ins>, name)
 
-- Response (<ins>code response</ins>, response, #code question)
+- Answer (<ins>id</ins>, description, #question(id))
 
-- HAS CATEGORY (<ins>code quizz</ins>, <ins>code category</ins>)
+- Quiz HAS Category (#quizz(id), #category(id))

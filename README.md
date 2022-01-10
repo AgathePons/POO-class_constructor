@@ -45,8 +45,7 @@ Un admin est un utilisateur qui a la possibilité de créer/éditer/supprimer de
 - QUIZ
 - CATEGORY
 - QUESTION
-- RESPONSE
-- GOOD_ANSWER
+- ANSWER
 - LEVEL
 - USER (student / admin)
 
